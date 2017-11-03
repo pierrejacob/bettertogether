@@ -16,25 +16,27 @@ resultsfolder <- "~/Dropbox/ModularizationResults/test/"
 #
 setwd(resultsfolder)
 
-## Biased data (warning: can take a few hours to run!)
+## Biased data (warning: can take a few hours to run! in particular, the "cut.run.R" scripts are super long)
+# if you are interested in a much more efficient way of sampling from the cut distribution
+# check out https://arxiv.org/abs/1708.03625 and the associated github rep: https://github.com/pierrejacob/debiasedmcmc
 
 # source(file.path(scriptfolder, "biaseddata.generatedata.run.R"))
 # source(file.path(scriptfolder, "biaseddata.posterior1.run.R"))
 # source(file.path(scriptfolder, "biaseddata.posterior2alone.run.R"))
 # source(file.path(scriptfolder, "biaseddata.posterior1given2.run.R"))
 # source(file.path(scriptfolder, "biaseddata.posterior2given1.run.R"))
-source(file.path(scriptfolder, "biaseddata.posterior2given1plugin.run.R"))
-source(file.path(scriptfolder, "biaseddata.posterior2given1cut.run.R"))
-## plots and tables
-source(file.path(scriptfolder, "biaseddata.plots.R"))
+# source(file.path(scriptfolder, "biaseddata.posterior2given1plugin.run.R"))
+# source(file.path(scriptfolder, "biaseddata.posterior2given1cut.run.R"))
+# ## plots and tables
+# source(file.path(scriptfolder, "biaseddata.plots.R"))
 
 ## Epidemiology data
 # source(file.path(scriptfolder, "epidemiology.posterior1.run.R"))
-# source(file.path(scriptfolder, "epidemiology.posterior2alone.run.R"))
-# source(file.path(scriptfolder, "epidemiology.posterior1given2.run.R"))
-# source(file.path(scriptfolder, "epidemiology.posterior2given1.run.R"))
-# source(file.path(scriptfolder, "epidemiology.posterior2given1plugin.run.R"))
+source(file.path(scriptfolder, "epidemiology.posterior2alone.run.R"))
+source(file.path(scriptfolder, "epidemiology.posterior1given2.run.R"))
+source(file.path(scriptfolder, "epidemiology.posterior2given1.run.R"))
+source(file.path(scriptfolder, "epidemiology.posterior2given1plugin.run.R"))
 # source(file.path(scriptfolder, "epidemiology.posterior2given1cut.run.R"))
-## plots and tables
+# ## plots and tables
 # source(file.path(scriptfolder, "epidemiology.plots.R"))
 

@@ -32,6 +32,52 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// plummer_full_posterior_
+NumericVector plummer_full_posterior_(NumericMatrix theta1s, NumericMatrix theta2s, NumericVector nhpv, NumericVector Npart, NumericVector ncases, NumericVector Npop_normalized, double theta2_mean_prior, double theta2_sd_var);
+RcppExport SEXP _bettertogether_plummer_full_posterior_(SEXP theta1sSEXP, SEXP theta2sSEXP, SEXP nhpvSEXP, SEXP NpartSEXP, SEXP ncasesSEXP, SEXP Npop_normalizedSEXP, SEXP theta2_mean_priorSEXP, SEXP theta2_sd_varSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type theta1s(theta1sSEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type theta2s(theta2sSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type nhpv(nhpvSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Npart(NpartSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type ncases(ncasesSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Npop_normalized(Npop_normalizedSEXP);
+    Rcpp::traits::input_parameter< double >::type theta2_mean_prior(theta2_mean_priorSEXP);
+    Rcpp::traits::input_parameter< double >::type theta2_sd_var(theta2_sd_varSEXP);
+    rcpp_result_gen = Rcpp::wrap(plummer_full_posterior_(theta1s, theta2s, nhpv, Npart, ncases, Npop_normalized, theta2_mean_prior, theta2_sd_var));
+    return rcpp_result_gen;
+END_RCPP
+}
+// plummer_module2_conditional_
+NumericVector plummer_module2_conditional_(NumericVector theta1, NumericMatrix theta2s, NumericVector ncases, NumericVector Npop_normalized);
+RcppExport SEXP _bettertogether_plummer_module2_conditional_(SEXP theta1SEXP, SEXP theta2sSEXP, SEXP ncasesSEXP, SEXP Npop_normalizedSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type theta1(theta1SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type theta2s(theta2sSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type ncases(ncasesSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Npop_normalized(Npop_normalizedSEXP);
+    rcpp_result_gen = Rcpp::wrap(plummer_module2_conditional_(theta1, theta2s, ncases, Npop_normalized));
+    return rcpp_result_gen;
+END_RCPP
+}
+// plummer_module2_loglikelihood_
+NumericVector plummer_module2_loglikelihood_(NumericMatrix thetas1, NumericMatrix theta2s, NumericVector ncases, NumericVector Npop_normalized);
+RcppExport SEXP _bettertogether_plummer_module2_loglikelihood_(SEXP thetas1SEXP, SEXP theta2sSEXP, SEXP ncasesSEXP, SEXP Npop_normalizedSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericMatrix >::type thetas1(thetas1SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type theta2s(theta2sSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type ncases(ncasesSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type Npop_normalized(Npop_normalizedSEXP);
+    rcpp_result_gen = Rcpp::wrap(plummer_module2_loglikelihood_(thetas1, theta2s, ncases, Npop_normalized));
+    return rcpp_result_gen;
+END_RCPP
+}
 // systematic_resampling_
 IntegerVector systematic_resampling_(const NumericVector& weights);
 RcppExport SEXP _bettertogether_systematic_resampling_(SEXP weightsSEXP) {
@@ -100,6 +146,9 @@ RcppExport SEXP _rcpp_module_boot_module_waverage();
 static const R_CallMethodDef CallEntries[] = {
     {"_bettertogether_rmvnorm", (DL_FUNC) &_bettertogether_rmvnorm, 3},
     {"_bettertogether_dmvnorm", (DL_FUNC) &_bettertogether_dmvnorm, 3},
+    {"_bettertogether_plummer_full_posterior_", (DL_FUNC) &_bettertogether_plummer_full_posterior_, 8},
+    {"_bettertogether_plummer_module2_conditional_", (DL_FUNC) &_bettertogether_plummer_module2_conditional_, 4},
+    {"_bettertogether_plummer_module2_loglikelihood_", (DL_FUNC) &_bettertogether_plummer_module2_loglikelihood_, 4},
     {"_bettertogether_systematic_resampling_", (DL_FUNC) &_bettertogether_systematic_resampling_, 1},
     {"_bettertogether_systematic_resampling_n_", (DL_FUNC) &_bettertogether_systematic_resampling_n_, 2},
     {"_bettertogether_systematic_resampling_n_u_", (DL_FUNC) &_bettertogether_systematic_resampling_n_u_, 3},
