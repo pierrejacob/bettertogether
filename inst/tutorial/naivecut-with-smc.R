@@ -31,11 +31,10 @@ nsamples <- 2^8
 thetas1 <- foreach(isample = 1:nsamples, .combine = rbind) %dorng% {
   rbeta(J, posterior_phi_alpha, posterior_phi_beta)
 }
-# hist(thetas1[,1])
-# hist(thetas1[,9])
 
 # Now, we can approximate theta2 given each theta1, using any Monte Carlo method we like
 # the following code does it with SMC samplers, but it could be a simpler Metropolis-Hastings algorithm
+# as in naivecut-with-mcmc.R in the inst/tutorial/ folder
 
 # prior in second module
 # hyper parameters
@@ -69,15 +68,14 @@ target2given1plugin <- list(thetadim = 2, ydim = 1,
                               return(plummer_module2_conditional(parameters$theta1hat, thetas, ncases, Npop_normalized))
                             },
                             parameters = list(theta1hat = NULL))
-# algorithmic parameters for the SMC sampler
+
+# algorithmic parameters for the SMC samplers
 param_algo <- list(nthetas = 2^8, minimum_diversity = 0.5, nmoves = 1, proposal = mixture_rmixmod())
 # if you want more accurate results, try this setting, which takes > 50 times longer to run:
 # param_algo <- list(nthetas = 2^10, minimum_diversity = 0.8, nmoves = 10, proposal = mixture_rmixmod())
 
-### Posterior in Module 1 given Module 1
-N1 <- nrow(thetas1)
-
-# results_cut <- list()
+# then run SMC sampler for each theta1
+# and get one theta2 out of each SMC sampler
 thetas2cut <- foreach (isample = 1:nsamples, .combine = rbind) %dorng% {
   target2given1plugin$parameters$theta1hat <- thetas1[isample,]
   res <- smcsampler(y2, target2given1plugin, param_algo)
@@ -87,8 +85,10 @@ thetas2cut <- foreach (isample = 1:nsamples, .combine = rbind) %dorng% {
   thetas2[index,]
 }
 
-hist(thetas2cut[,1], nclass = 100)
-hist(thetas2cut[,2], nclass = 100)
+#
 plot(thetas2cut[,1], thetas2cut[,2])
+hist(thetas2cut[,1])
+hist(thetas2cut[,2])
 
-
+# See the file unbiasedcut.R  in inst/tutorial 
+# for a more sophisticated approach to sampling from the cut distribution
